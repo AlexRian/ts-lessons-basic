@@ -7,12 +7,30 @@
     <title>Vite + TS</title>
   </head>
   <body>
-    <div class="container">
-      <div class="list"></div>
-      <div class="form">
-        <input type="text">
-        <input type="text">
-        <button>Добавить</button>
+    <div class="menu">
+      <div class="tab" target="carsTab">Cars</div>
+      <div class="tab" target="planesTab">Plane</div>
+    </div>
+    <div class="dashboard" id="dashboard">
+      <div class="container" id="carsTab">
+        <div class="list"></div>
+        <form>
+          <input type="text" name="name" placeholder="Имя">
+          <input type="text" name="maxSpeed" placeholder="Макс скорость">
+          <input type="text" name="numberOfSeats" placeholder="Число мест">
+          <input type="text" name="trunkVolume" placeholder="Объем багажника">
+          <button>Добавить машину</button>
+        </form>
+      </div>
+      <div class="container" id="planesTab" style="display: none;">
+        <div class="list"></div>
+        <form>
+          <input type="text" name="name" placeholder="Имя">
+          <input type="text" name="maxSpeed" placeholder="Макс скорость">
+          <input type="text" name="numberOfSeats" placeholder="Число мест">
+          <input type="text" name="maxHeight" placeholder="Maкс высота">
+          <button>Добавить самолет</button>
+        </form>
       </div>
     </div>
     <script type="module" src="/src/main.ts"></script>
