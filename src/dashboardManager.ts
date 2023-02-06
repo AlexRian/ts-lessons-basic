@@ -9,24 +9,24 @@ enum TransportTabs {
 }
 
 class DashboardManager {
-  private static _activeTab:TransportTabs = TransportTabs.CarTab;
-  private static _dashBoardElement:HTMLDivElement | null;
+  private static activeTab:TransportTabs = TransportTabs.CarTab;
+  private static dashBoardElement:HTMLDivElement | null;
 
   public static setDashboardElement(dashBoardElement:HTMLDivElement){
-    DashboardManager._dashBoardElement = dashBoardElement;
+    DashboardManager.dashBoardElement = dashBoardElement;
   }
 
   public static changeTab(tabName:string){
-    DashboardManager._activeTab = tabName as TransportTabs;
+    //Строку можно приводить к Enum
+    DashboardManager.activeTab = tabName as TransportTabs;
 
-    const dashboardChilds:HTMLDivElement[] = Array.from(DashboardManager._dashBoardElement!.children) as HTMLDivElement[];
+    const dashboardChilds:HTMLDivElement[] = Array.from(DashboardManager.dashBoardElement!.children) as HTMLDivElement[];
     
-    dashboardChilds.forEach((node:ChildNode)=>{
-      const element:HTMLDivElement = (node as HTMLDivElement)
-      if(element.id === DashboardManager._activeTab){
-        element.style.display = 'block';
+    dashboardChilds.forEach((node:HTMLDivElement)=>{
+      if(node.id === DashboardManager.activeTab){
+        node.style.display = 'block';
       }else{
-        element.style.display = 'none';
+        node.style.display = 'none';
       }
     })
   }
@@ -48,17 +48,17 @@ class DashboardManager {
   }
 
   public static render(){
-    const planesListElement:HTMLDivElement = DashboardManager._dashBoardElement!.querySelector(`#${TransportTabs.PlaneTab} .list`)!;
-    const carListElement:HTMLDivElement = DashboardManager._dashBoardElement!.querySelector(`#${TransportTabs.CarTab} .list`)!;
+    const planesListElement:HTMLDivElement = DashboardManager.dashBoardElement!.querySelector(`#${TransportTabs.PlaneTab} .list`)!;
+    const carListElement:HTMLDivElement = DashboardManager.dashBoardElement!.querySelector(`#${TransportTabs.CarTab} .list`)!;
     planesListElement.innerHTML = '';
     carListElement.innerHTML = '';
 
     Hangar.getPlanes().forEach((plane:Transport)=>{
-      planesListElement.appendChild(DashboardManager.createListItem((plane as Plane)));
+      planesListElement.appendChild(DashboardManager.createListItem(plane as Plane));
     })
 
     Hangar.getCars().forEach((car:Transport)=>{
-      carListElement.appendChild(DashboardManager.createListItem((car as Car)));
+      carListElement.appendChild(DashboardManager.createListItem(car as Car));
     })
   }
 }

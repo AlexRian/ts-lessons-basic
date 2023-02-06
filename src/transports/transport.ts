@@ -1,5 +1,6 @@
 import { IAccountable, ITransportProps } from "../interfaces";
 
+//Дополнив класс интерфейсом IAccountable, мы обязаны реализовать атрибут id в нем
 class Transport implements IAccountable{
   id:number = 0;
   private _name:string;

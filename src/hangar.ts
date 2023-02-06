@@ -32,6 +32,7 @@ class Hangar {
   }
 
   public static getCars(): Transport[] {
+    //Здесь мы используем instanceof чтобы сделать предикат который находит только те объекты которые являются проихводными класса Car
     return this._transports.filter((transport:Transport) => transport instanceof Car);
   }
 
